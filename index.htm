@@ -111,15 +111,15 @@
         <div id="sideLegInputs" style="display: none;">
     <!-- 左腳 -->
     <label for="leftSideLegHeight">左腳高度 (cm) (填入需求的高度)若只有單側只要輸入一邊即可：</label>
-    <input type="number" id="leftSideLegHeight" min="0" value="0">
+    <input type="number" id="leftSideLegHeight" min="0" value="">
     <label for="leftSideLegWidth">左腳寬度 (cm) (填入需求的寬度，需將寬度、厚度、內包加總)：</label>
-    <input type="number" id="leftSideLegWidth" min="0" value="0">
+    <input type="number" id="leftSideLegWidth" min="0" value="">
     
     <!-- 右腳 -->
     <label for="rightSideLegHeight">右腳高度 (cm) (填入需求的高度)有兩隻腳才要輸入否則留空即可：</label>
-    <input type="number" id="rightSideLegHeight" min="0" value="0">
+    <input type="number" id="rightSideLegHeight" min="0" value="">
     <label for="rightSideLegWidth">右腳寬度 (cm) (填入需求的寬度，需將寬度、厚度、內包加總)：</label>
-    <input type="number" id="rightSideLegWidth" min="0" value="0">
+    <input type="number" id="rightSideLegWidth" min="0" value="">
 </div>
 
          
@@ -138,9 +138,9 @@
 
         <div id="backPanelInputs" style="display: none;">
         <label for="backPanelLength">美背板長度 (cm)：</label>
-        <input type="number" id="backPanelLength" min="1" value="0">
+        <input type="number" id="backPanelLength" min="1" value="">
         <label for="backPanelWidth">美背板高度 (cm)：</label>
-        <input type="number" id="backPanelWidth" min="1" value="0">
+        <input type="number" id="backPanelWidth" min="1" value="">
         </div>
 
 
@@ -499,11 +499,39 @@ function toggleSocketImage() {
     document.getElementById("backPanelLength").value = "";
     document.getElementById("backPanelWidth").value = "";
     
+
+    // 方案 1：直接隱藏圖片
+    document.getElementById("shapeImage1").style.display = "none";
+    document.getElementById("shapeImage2").style.display = "none";
+    document.getElementById("shapeImage1").src = ""; // 可選：清空圖片來源
+    document.getElementById("shapeImage2").src = ""; // 可選：清空圖片來源
+
+
+    // 方案 2：呼叫 updateSizeInputs 同步狀態
+    updateSizeInputs();
+
+
+
+
     document.getElementById("totalPrice").textContent = "0"; // 未稅
     document.getElementById("totalPriceWithTax").textContent = "0"; // 含稅
 
 
 }
+
+// 禁用右鍵與開發者工具
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', event => {
+    if (event.key === 'F12' || 
+        (event.ctrlKey && event.shiftKey && event.key === 'I') || 
+        (event.ctrlKey && event.key === 'u')) {
+        event.preventDefault();
+    }
+});
+
+
+        
+        
 </script>
 </body>
 </html>
